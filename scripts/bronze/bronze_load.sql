@@ -82,7 +82,7 @@ BEGIN
     table_duration := table_endtime - table_starttime;
     RAISE NOTICE 'Time taken for erp_px_cat_g1v2: %', table_duration;
 
-    -- Capture Overall ETL End Time
+    -- Capture Overall Time
     endtime := now();
     duration := endtime - starttime;
 
