@@ -86,7 +86,7 @@ BEGIN
     endtime := now();
     duration := endtime - starttime;
 
-    RAISE NOTICE 'ETL Completed at: %', endtime;
-    RAISE NOTICE 'Total ETL Duration: %', duration;
+    RAISE NOTICE 'Ended at:  %', endtime;
+    RAISE NOTICE 'Total Duration: %', duration;
 END;
 $$;
