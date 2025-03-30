@@ -2,12 +2,18 @@
  If facing permission issues, move the datasets to tmp folder in linux or equivalent in windows
  or MacOS.
  */
+
+CALL bronze.load_bronze();
+
 CREATE OR REPLACE PROCEDURE bronze.load_bronze()
     LANGUAGE plpgsql
 AS
 $$
 BEGIN
+    RAISE NOTICE 'Truncating table bronze.crm_cust_info...';
     TRUNCATE TABLE bronze.crm_cust_info;
+
+    RAISE NOTICE 'Loading data into bronze.crm_cust_info...';
     COPY bronze.crm_cust_info
         FROM '/tmp/cust_info.csv'
         WITH (
@@ -16,7 +22,10 @@ BEGIN
         DELIMITER ','
         );
 
+    RAISE NOTICE 'Truncating table bronze.crm_prd_info...';
     TRUNCATE TABLE bronze.crm_prd_info;
+
+    RAISE NOTICE 'Loading data into bronze.crm_prd_info...';
     COPY bronze.crm_prd_info
         FROM '/tmp/prd_info.csv'
         WITH (
@@ -25,7 +34,10 @@ BEGIN
         DELIMITER ','
         );
 
+    RAISE NOTICE 'Truncating table bronze.crm_sales_details...';
     TRUNCATE TABLE bronze.crm_sales_details;
+
+    RAISE NOTICE 'Loading data into bronze.crm_sales_details...';
     COPY bronze.crm_sales_details
         FROM '/tmp/sales_details.csv'
         WITH (
@@ -34,7 +46,10 @@ BEGIN
         DELIMITER ','
         );
 
+    RAISE NOTICE 'Truncating table bronze.erp_loc_a101...';
     TRUNCATE TABLE bronze.erp_loc_a101;
+
+    RAISE NOTICE 'Loading data into bronze.erp_loc_a101...';
     COPY bronze.erp_loc_a101
         FROM '/tmp/LOC_A101.csv'
         WITH (
@@ -43,7 +58,10 @@ BEGIN
         DELIMITER ','
         );
 
+    RAISE NOTICE 'Truncating table bronze.erp_cust_az12...';
     TRUNCATE TABLE bronze.erp_cust_az12;
+
+    RAISE NOTICE 'Loading data into bronze.erp_cust_az12...';
     COPY bronze.erp_cust_az12
         FROM '/tmp/CUST_AZ12.csv'
         WITH (
@@ -52,7 +70,10 @@ BEGIN
         DELIMITER ','
         );
 
+    RAISE NOTICE 'Truncating table bronze.erp_px_cat_g1v2...';
     TRUNCATE TABLE bronze.erp_px_cat_g1v2;
+
+    RAISE NOTICE 'Loading data into bronze.erp_px_cat_g1v2...';
     COPY bronze.erp_px_cat_g1v2
         FROM '/tmp/PX_CAT_G1V2.csv'
         WITH (
@@ -60,5 +81,7 @@ BEGIN
         HEADER,
         DELIMITER ','
         );
+
+    RAISE NOTICE 'Data load complete!';
 END;
 $$;
