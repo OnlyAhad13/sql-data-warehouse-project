@@ -1,3 +1,9 @@
+/*
+ This warehouse uses the approach of Millennial Warehouse having 3 layers Bronze, Silver, Gold.
+ Below is the DDL to create the bronze layer. Bronze layer is the first layer of warehouse where we store
+ the data without any sort of modifications or changes. 
+ */
+
 CREATE TABLE bronze.crm_cust_info(
     cst_id INT,
     cst_key VARCHAR(50),
